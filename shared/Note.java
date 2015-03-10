@@ -6,7 +6,7 @@ package shared;
 **/
 public class Note {
 
-    float frequency;
+    private float frequency;
    
     /**
         Constructor for the Note class
@@ -31,4 +31,10 @@ public class Note {
     public void setFrequency(float newFreq) {
         frequency = newFreq;
     }
+
+    public String toString() {
+        String ret = "Frequency: " + freq;
+        return ret;
+    }
+   
 }
