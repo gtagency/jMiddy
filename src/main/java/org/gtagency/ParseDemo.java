@@ -11,21 +11,21 @@ import org.gtagency.parser.Parser;
 
 public class ParseDemo {
     public static void main(String... args) throws FileNotFoundException {
-        if (args.length == 0) {
+        if (args.length <= 1) {
             System.out.println("java ParseDemo <file1 file2 file3...>");
             System.exit(0);
         }
 
-        for (String s : args) {
-            System.out.printf("File %s:\n", s);
+        for (int argi = 1; argi < args.length; argi++) {
+            System.out.printf("File %s:\n", args[argi]);
             System.out.println("----------------------------------");
-            Parser p = new Parser(new File(s));
+            Parser p = new Parser(new File(args[argi]));
 
             ArrayList<List<Note>> allNotes = p.parse();
 
             for (int i = 0; i < allNotes.size(); i++) {
                 List<Note> notes = allNotes.get(i);
-//                System.out.printf("%d: %s\n", i, notes.toString());
+                System.out.printf("%d: %s\n", i, notes.toString());
             }
             System.out.println("");
         }

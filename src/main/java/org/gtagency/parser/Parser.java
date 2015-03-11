@@ -18,7 +18,7 @@ public class Parser {
         } catch (InvalidMidiDataException e) {
             System.out.println("Invalid midi format!"); 
         } catch (IOException e) {
-            System.out.println("Could not open file!");
+            System.out.println("Could not open file: " + file.getName() + "!");
         }
         this.tracks = this.midiSequence.getTracks();
     }
