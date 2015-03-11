@@ -1,4 +1,5 @@
-package shared;
+package org.gtagency.shared;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -74,18 +75,6 @@ public class Track {
         return notes.get(index);
     }
     
-    /**
-        Setter for a note at a specific index
-        @param n the new note
-        @param index the index to set
-    **/
-    public void setNote(Note n, int index) {
-        if (n == null) {
-            throw new IllegalArgumentException("Passed in Note should not be null");
-        }
-        notes.get(index).setFrequency(n.getFrequency());
-    }
-
     /**
         Adds a note at a specific index
         @param n the note to add to the ArrayList

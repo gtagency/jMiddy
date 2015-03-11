@@ -1,4 +1,5 @@
-package shared;
+package org.gtagency.shared;
+
 import java.util.ArrayList;
 import java.util.Collection;
 /**
