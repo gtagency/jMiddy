@@ -11,8 +11,9 @@ import org.gtagency.parser.Parser;
 
 public class ParseDemo {
     public static void main(String... args) throws FileNotFoundException {
+        System.out.println(args.length);
         if (args.length == 0) {
-            System.out.println("java ParseDemo <file1 file2 file3...>");
+            System.out.println("java -jar target/jmiddy...<file1 file2 file3...>");
             System.exit(0);
         }
 
@@ -25,7 +26,7 @@ public class ParseDemo {
 
             for (int i = 0; i < allNotes.size(); i++) {
                 List<Note> notes = allNotes.get(i);
-//                System.out.printf("%d: %s\n", i, notes.toString());
+                System.out.printf("%d: %s\n", i, notes.toString());
             }
             System.out.println("");
         }
