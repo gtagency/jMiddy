@@ -22,7 +22,7 @@ public class ParseDemo {
             System.out.println("----------------------------------");
             Parser p = new Parser(new File(s));
 
-            ArrayList<List<Note>> allNotes = p.parse();
+            ArrayList<List<Note>> allNotes = p.downSample(8);
 
             for (int i = 0; i < allNotes.size(); i++) {
                 List<Note> notes = allNotes.get(i);

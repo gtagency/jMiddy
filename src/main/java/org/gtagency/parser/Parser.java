@@ -11,6 +11,8 @@ public class Parser {
 
     private Sequence midiSequence;
     private Track[] tracks;
+    private ArrayList<List<Note>> allNotes;
+    private double tps;
 
     public Parser(File file) {
         try {
@@ -21,22 +23,24 @@ public class Parser {
             System.out.println("Could not open file: " + file.getName() + "!");
         }
         this.tracks = this.midiSequence.getTracks();
+
+        parse();
     }
 
-    public ArrayList<List<Note>> parse() {
+    private void parse() {
         long maxTicks = 0;
         for (Track t : tracks) {
             if (t.ticks() > maxTicks) maxTicks = t.ticks();
         }
         double seconds = midiSequence.getMicrosecondLength() / Math.pow(10, 6);
-        double tps = (double) maxTicks / seconds;
+        tps = (double) maxTicks / seconds;
 
         System.out.printf("Song Length: %f, Ticks Per Second: %f\n", seconds, tps);
 
         System.out.println(maxTicks);
         
         //casting to int for now. If something goes wrong, we'll fix it
-        ArrayList<List<Note>> allNotes = new ArrayList<List<Note>>((int)maxTicks);
+        allNotes = new ArrayList<List<Note>>((int)maxTicks);
 
         for (int i = 0; i <= (int)maxTicks; i++) {
             allNotes.add(new ArrayList<>());
@@ -72,7 +76,19 @@ public class Parser {
                     }
                 }
             }
+
         }
+    }
+    public ArrayList<List<Note>> getNotes() {
         return allNotes;
     }
+
+    public ArrayList<List<Note>> downSample(int samplesPerSecond) {
+        ArrayList<List<Note>> downSampled = new ArrayList<>();
+        for (int i = 0; i < allNotes.size(); i += tps / samplesPerSecond) {
+            downSampled.add(allNotes.get(i));
+        }
+        return downSampled;
+    }
+
 }
